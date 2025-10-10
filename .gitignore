@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Compiled files
+*.o
+*.exe
+*.out
+a.out
+
+# VS Code (optionnel - vous pouvez garder .vscode/)
+# .vscode/
+
+# Temporary files
+*.tmp
+*.temp
+*~
