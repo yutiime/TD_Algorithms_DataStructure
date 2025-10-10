@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/yunus/Desktop/TD-1/exercice1",
-      "program": "/Users/yunus/Desktop/TD-1/exercice1/build/Debug/outDebug"
+      "cwd": "/Users/yunus/Desktop/TD-1",
+      "program": "/Users/yunus/Desktop/TD-1/build/Debug/outDebug"
     }
   ]
 }
