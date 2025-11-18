@@ -158,9 +158,9 @@ static int traiter_un_test(int idx) {
     char expected_output[64];
     char result_file[64];
 
-    snprintf(input_file, sizeof input_file, "test%02d.txt", idx);
-    snprintf(expected_output, sizeof expected_output, "test%02d-output.txt", idx);
-    snprintf(result_file, sizeof result_file, "result%02d.txt", idx);
+    snprintf(input_file, sizeof input_file, "input/test%02d.txt", idx);
+    snprintf(expected_output, sizeof expected_output, "expected/test%02d-output.txt", idx);
+    snprintf(result_file, sizeof result_file, "results/result%02d.txt", idx);
 
     FILE *f = fopen(input_file, "r");
     if (!f) {
