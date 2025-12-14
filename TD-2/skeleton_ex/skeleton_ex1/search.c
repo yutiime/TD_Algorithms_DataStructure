@@ -26,7 +26,7 @@ int jump_search(int *arr, int n, int target)
     int step = (int)sqrt(n);
     int prev = 0;
 
-    // find block wehre element is prsent 
+    // find block where element is present
     while (arr[min_int(step, n) - 1] < target) {
         prev = step;
         step += (int)sqrt(n);
@@ -35,7 +35,7 @@ int jump_search(int *arr, int n, int target)
         }
     }
 
-    // linear search in found block 
+    // linear search in found block
     while (arr[prev] < target) {
         prev++;
         if (prev == min_int(step, n)) {
@@ -43,7 +43,7 @@ int jump_search(int *arr, int n, int target)
         }
     }
 
-    // check if element is foudnd 
+    // check if element is found
     if (arr[prev] == target) {
         return prev;
     }

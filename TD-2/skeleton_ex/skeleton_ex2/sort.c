@@ -36,7 +36,6 @@ void insertion_sort(int *arr, int n)
 void bubble_sort(int *arr, int n)
 {
     // bubble sort iterative
-    // bubble sort iterative
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
@@ -51,7 +50,7 @@ void merge(int *arr, int *tmp, int l, int m, int r)
 {
     // merge function
 
-    int i = l , j = m, k = l; 
+    int i = l , j = m, k = l;
     while (i < m && j <= r) {
         if (arr[i] <= arr[j]) {
             tmp[k++] = arr[i++];
@@ -72,14 +71,14 @@ void merge(int *arr, int *tmp, int l, int m, int r)
 void mergesort_rec(int *arr, int *tmp, int l, int r)
 {
     // recursive steps of merge sort
-    if (l < r) { 
-        int m = l + (r - l) / 2; 
-        mergesort_rec(arr, tmp, l, m); 
-        mergesort_rec(arr, tmp, m + 1, r); 
-        merge(arr, tmp, l, m + 1, r); 
+    if (l < r) {
+        int m = l + (r - l) / 2;
+        mergesort_rec(arr, tmp, l, m);
+        mergesort_rec(arr, tmp, m + 1, r);
+        merge(arr, tmp, l, m + 1, r);
         // copy tmp to arr
-        for (int i = l; i <= r; i++) { 
-            arr[i] = tmp[i]; 
+        for (int i = l; i <= r; i++) {
+            arr[i] = tmp[i];
         }
     }
 }
@@ -97,7 +96,7 @@ void merge_sort(int *arr, int n)
 int partition(int *arr, int l, int r)
 {
     // partition function
-    int pivot = arr[r]; 
+    int pivot = arr[r];
     int i = l - 1;
     for (int j = l; j <= r - 1; j++) {
         if (arr[j] < pivot) {
@@ -118,10 +117,10 @@ int partition(int *arr, int l, int r)
 void quick_sort_rec(int *arr, int l, int r)
 {
     // recursive steps of quick sort
-    if (l < r) { 
-        int pi = partition(arr, l, r); 
-        quick_sort_rec(arr, l, pi - 1); 
-        quick_sort_rec(arr, pi + 1, r); 
+    if (l < r) {
+        int pi = partition(arr, l, r);
+        quick_sort_rec(arr, l, pi - 1);
+        quick_sort_rec(arr, pi + 1, r);
     }
 }
 

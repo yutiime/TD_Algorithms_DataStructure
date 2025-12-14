@@ -8,25 +8,25 @@ int main() {
     float time_used;
     int result;
 
-    printf("Calcul du %dème nombre de Fibonacci\n\n", n);
+    printf("Computing the %dth Fibonacci number\n\n", n);
 
     // naive function test
-    printf("=== Algorithme Naif récursif ===\n");
+    printf("=== Naive Recursive Algorithm ===\n");
     start = clock();
     result = nthFibonacci(n);
     end = clock();
     time_used = ((float) (end - start)) / CLOCKS_PER_SEC;
-    printf("Résultat: %d\n", result);
-    printf("Temps d'exécution: %f secondes\n\n", time_used);
+    printf("Result: %d\n", result);
+    printf("Execution time: %f seconds\n\n", time_used);
 
-    // dynamic prog. function test 
-    printf("=== Algorithme aveec Programmation Dynamiqeuu ===\n");
+    // dynamic programming function test
+    printf("=== Algorithm with Dynamic Programming ===\n");
     start = clock();
     result = nthFibonacciDynamic(n);
     end = clock();
     time_used = ((float) (end - start)) / CLOCKS_PER_SEC;
-    printf("Résultat: %d\n", result);
-    printf("Temps d'exécution: %f secondes\n\n", time_used);
+    printf("Result: %d\n", result);
+    printf("Execution time: %f seconds\n\n", time_used);
 
 
     return 0;

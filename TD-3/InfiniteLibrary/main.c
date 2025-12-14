@@ -57,7 +57,7 @@ static Noeud* inserer(Noeud* racine, int cle) {
 
     if (cle < racine->cle)       racine->gauche = inserer(racine->gauche, cle);
     else if (cle > racine->cle)  racine->droit  = inserer(racine->droit,  cle);
-    else return racine; // ignore doublon
+    else return racine; // ignore duplicate
 
     racine->hauteur = 1 + max2(hauteur(racine->gauche), hauteur(racine->droit));
 
@@ -106,7 +106,7 @@ static void liberer_avl(Noeud *r) {
     free(r);
 }
 
-// ---------- Utils comparaison fichiers ----------
+// ---------- File comparison utilities ----------
 static void rstrip(char *s) {
     if (!s) return;
     size_t len = strlen(s);
@@ -115,7 +115,7 @@ static void rstrip(char *s) {
     }
 }
 
-// Compare ligne par ligne deux fichiers, en ignorant les espaces de fin de ligne
+// Compare two files line by line, ignoring trailing spaces
 static int fichiers_identiques_relaxes(const char *pathA, const char *pathB) {
     FILE *fa = fopen(pathA, "r");
     FILE *fb = fopen(pathB, "r");
@@ -133,7 +133,7 @@ static int fichiers_identiques_relaxes(const char *pathA, const char *pathB) {
         char *rb = fgets(lb, sizeof lb, fb);
 
         if (!ra || !rb) {
-            // fin des fichiers : identiques seulement si les deux sont finis
+            // end of files: identical only if both are finished
             equal = (ra == NULL && rb == NULL);
             break;
         }
@@ -152,7 +152,7 @@ static int fichiers_identiques_relaxes(const char *pathA, const char *pathB) {
     return equal;
 }
 
-// Traite un test unique d'indice idx
+// Process a single test with index idx
 static int traiter_un_test(int idx) {
     char input_file[64];
     char expected_output[64];
@@ -164,13 +164,13 @@ static int traiter_un_test(int idx) {
 
     FILE *f = fopen(input_file, "r");
     if (!f) {
-        fprintf(stderr, "Impossible d'ouvrir %s\n", input_file);
+        fprintf(stderr, "Unable to open %s\n", input_file);
         return -1;
     }
 
     int n_books = 0;
     if (fscanf(f, "%d", &n_books) != 1 || n_books < 0) {
-        fprintf(stderr, "Format invalide (n_books) dans %s\n", input_file);
+        fprintf(stderr, "Invalid format (n_books) in %s\n", input_file);
         fclose(f);
         return -1;
     }
@@ -183,14 +183,14 @@ static int traiter_un_test(int idx) {
     }
     for (int i = 0; i < n_books; i++) {
         if (fscanf(f, "%d", &id_books[i]) != 1) {
-            fprintf(stderr, "Format invalide dans id_books (%s)\n", input_file);
+            fprintf(stderr, "Invalid format in id_books (%s)\n", input_file);
             free(id_books); fclose(f); return -1;
         }
     }
 
     int n2 = 0;
     if (fscanf(f, "%d", &n2) != 1 || n2 < 0) {
-        fprintf(stderr, "Format invalide (n2) dans %s\n", input_file);
+        fprintf(stderr, "Invalid format (n2) in %s\n", input_file);
         free(id_books); fclose(f); return -1;
     }
 
@@ -201,7 +201,7 @@ static int traiter_un_test(int idx) {
     }
     for (int i = 0; i < n2; i++) {
         if (fscanf(f, "%d", &tab2[i]) != 1) {
-            fprintf(stderr, "Format invalide dans tab2 (%s)\n", input_file);
+            fprintf(stderr, "Invalid format in tab2 (%s)\n", input_file);
             free(id_books); free(tab2); fclose(f); return -1;
         }
     }
@@ -211,7 +211,7 @@ static int traiter_un_test(int idx) {
 
     FILE *fr = fopen(result_file, "w");
     if (!fr) {
-        fprintf(stderr, "Impossible de creer %s\n", result_file);
+        fprintf(stderr, "Unable to create %s\n", result_file);
         liberer_avl(racine);
         free(id_books); free(tab2);
         return -1;
@@ -237,7 +237,7 @@ static int traiter_un_test(int idx) {
     return same;
 }
 
-// ---------- Programme principal ----------
+// ---------- Main program ----------
 
 int main(void)
 {
@@ -247,7 +247,7 @@ int main(void)
         int same = traiter_un_test(idx);
         if (same == -1) {
             ret = 1;
-            printf("False (erreur de traitement)\n");
+            printf("False (processing error)\n");
         } else {
             printf("%s\n", same ? "True" : "False");
             if (!same) ret = 1;

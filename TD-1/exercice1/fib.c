@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include "fib.h"
 
-// Naive algorithm : 
-// for calculating the nth terms 
+// Naive algorithm:
+// for calculating the nth Fibonacci number
 int nthFibonacci(int n){
     // if n is 0 or 1 ---> return n
     if (n <= 1){
@@ -13,32 +13,32 @@ int nthFibonacci(int n){
 }
 
 
-// dynamic algorithm : 
-int nthFibonacciUtil(int n, int memo[]) { 
+// Dynamic programming algorithm:
+int nthFibonacciUtil(int n, int memo[]) {
 
-    // if n is 0 or 1 ---> return n 
-    if (n<=1) { 
-        return n; 
+    // if n is 0 or 1 ---> return n
+    if (n<=1) {
+        return n;
     }
 
-    // checking th eresult in memo table 
-    if (memo[n] != -1) { 
-        return memo[n]; 
+    // checking the result in memo table
+    if (memo[n] != -1) {
+        return memo[n];
     }
 
-    // caculating Fibonacci number and storing in memo 
+    // calculating Fibonacci number and storing in memo
     memo[n] = nthFibonacciUtil(n-1, memo) + nthFibonacciUtil(n-2, memo);
-    return memo[n]; 
+    return memo[n];
 }   
-    
 
-int nthFibonacciDynamic(int n) { 
 
-    //create a memoization table 
-    int memo[n+1]; 
-    for (int i = 0; i <= n; i++) { 
-        memo[i] = -1; 
-    } 
-    return nthFibonacciUtil(n, memo); 
+int nthFibonacciDynamic(int n) {
+
+    // create a memoization table
+    int memo[n+1];
+    for (int i = 0; i <= n; i++) {
+        memo[i] = -1;
+    }
+    return nthFibonacciUtil(n, memo);
 } 
 

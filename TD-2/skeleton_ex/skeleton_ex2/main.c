@@ -6,7 +6,7 @@
 
 int main(void)
 {
-    int n = 10000; // taille du tableau
+    int n = 10000; // array size
     int *orig = (int*)malloc(n * sizeof(int));
     if (!orig) return 1;
 

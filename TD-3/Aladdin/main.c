@@ -7,7 +7,7 @@
 #define OUTPUT_FILE_PATTERN "results/result%02d.txt"
 #define EXPECTED_FILE_PATTERN "expected/test%02d-output.txt"
 
-// Structure de noeud pour le graphe
+// Graph node structure
 typedef struct Node {
     int dest;
     struct Node* next;
@@ -19,7 +19,7 @@ int distance_arr[MAX_N];
 int queue_arr[MAX_N];
 int stack_arr[MAX_N];
 
-// Compare deux fichiers
+// Compare two files
 int compareFiles(const char* fileA, const char* fileB) {
     FILE* a = fopen(fileA, "rb");
     FILE* b = fopen(fileB, "rb");
@@ -41,7 +41,7 @@ int compareFiles(const char* fileA, const char* fileB) {
             same = 0;
             break;
         }
-        if (ca == EOF) { // EOF atteint simultanément
+        if (ca == EOF) { // EOF reached simultaneously
             break;
         }
     }
@@ -51,8 +51,8 @@ int compareFiles(const char* fileA, const char* fileB) {
     return same;
 }
 
-// Ajoute une arrete au graphe non orienté
-void ajouterArete(int u, int v) {
+// Add an edge to the undirected graph
+void addEdge(int u, int v) {
     Node* newNode = (Node*)malloc(sizeof(Node));
     newNode->dest = v;
     newNode->next = graph[u];
@@ -64,7 +64,7 @@ void ajouterArete(int u, int v) {
     graph[v] = newNode;
 }
 
-// DFS iteratif pour compter les royaumes
+// Iterative DFS to count kingdoms
 void dfs(int start) {
     int top = 0;
     stack_arr[top++] = start;
@@ -84,7 +84,7 @@ void dfs(int start) {
     }
 }
 
-// BFS pour trouver le chemin le plus court
+// BFS to find shortest path
 int bfs(int start, int end, int n) {
     if (start == end) return 0;
 
@@ -101,14 +101,14 @@ int bfs(int start, int end, int n) {
 
         Node* temp = graph[current];
         while (temp != NULL) {
-            int voisin = temp->dest;
-            if (!visited[voisin]) {
-                visited[voisin] = 1;
-                distance_arr[voisin] = distance_arr[current] + 1;
-                queue_arr[rear++] = voisin;
+            int neighbor = temp->dest;
+            if (!visited[neighbor]) {
+                visited[neighbor] = 1;
+                distance_arr[neighbor] = distance_arr[current] + 1;
+                queue_arr[rear++] = neighbor;
 
-                if (voisin == end) {
-                    return distance_arr[voisin];
+                if (neighbor == end) {
+                    return distance_arr[neighbor];
                 }
             }
             temp = temp->next;
@@ -118,8 +118,8 @@ int bfs(int start, int end, int n) {
     return -1;
 }
 
-// Libere tout le graphe pour les sommets 1..n
-void libererGraphe(int n) {
+// Free all graph edges for nodes 1..n
+void freeGraph(int n) {
     for (int i = 1; i <= n; i++) {
         Node* temp = graph[i];
         while (temp != NULL) {
@@ -131,7 +131,7 @@ void libererGraphe(int n) {
     }
 }
 
-// Fonction principale
+// Main function
 int main(void) {
     for (int testId = 1; testId <= 10; testId++) {
         char inputFile[32];
@@ -143,12 +143,12 @@ int main(void) {
 
         FILE* input = fopen(inputFile, "r");
         if (input == NULL) {
-            printf("test%02d False (input manquant)\n", testId);
+            printf("test%02d False (missing input)\n", testId);
             continue;
         }
         FILE* output = fopen(outputFile, "w");
         if (output == NULL) {
-            fprintf(stderr, "Impossible d'ouvrir le fichier de sortie %s\n", outputFile);
+            fprintf(stderr, "Unable to open output file %s\n", outputFile);
             fclose(input);
             continue;
         }
@@ -157,56 +157,56 @@ int main(void) {
         int ok = 1;
 
         if (fscanf(input, "%d %d", &n, &m) != 2) {
-            fprintf(stderr, "Lecture invalide pour n et m dans %s\n", inputFile);
+            fprintf(stderr, "Invalid read for n and m in %s\n", inputFile);
             ok = 0;
         }
 
-        // Initialisation
+        // Initialization
         memset(graph, 0, sizeof(graph));
         memset(visited, 0, sizeof(visited));
 
-        // Lecture des routes
+        // Read edges
         for (int i = 0; ok && i < m; i++) {
             int u, v;
             if (fscanf(input, "%d %d", &u, &v) != 2) {
-                fprintf(stderr, "Lecture invalide pour une route a la ligne %d dans %s\n", i + 1, inputFile);
+                fprintf(stderr, "Invalid read for edge at line %d in %s\n", i + 1, inputFile);
                 ok = 0;
                 break;
             }
-            ajouterArete(u, v);
+            addEdge(u, v);
         }
 
         if (ok && fscanf(input, "%d %d", &a, &b) != 2) {
-            fprintf(stderr, "Lecture invalide pour les villes a et b dans %s\n", inputFile);
+            fprintf(stderr, "Invalid read for cities a and b in %s\n", inputFile);
             ok = 0;
         }
 
-        // Tache 1 : Compter les royaumes
-        int nbRoyaumes = 0;
-        int cheminMin = -1;
+        // Task 1: Count kingdoms
+        int nbKingdoms = 0;
+        int minPath = -1;
         if (ok) {
             for (int i = 1; i <= n; i++) {
                 if (!visited[i]) {
                     dfs(i);
-                    nbRoyaumes++;
+                    nbKingdoms++;
                 }
             }
 
-            // Tache 2 : Plus court chemin par BFS
-            cheminMin = bfs(a, b, n);
+            // Task 2: Shortest path using BFS
+            minPath = bfs(a, b, n);
 
-            fprintf(output, "%d\n", nbRoyaumes);
-            fprintf(output, "%d\n", cheminMin);
+            fprintf(output, "%d\n", nbKingdoms);
+            fprintf(output, "%d\n", minPath);
         }
 
         fclose(input);
         fclose(output);
 
-        // comparaison exacte caractere par caractere avec le fichier attendu
+        // exact byte-by-byte comparison with expected file
         int same = ok && compareFiles(outputFile, expectedFile);
         printf("test%02d %s\n", testId, same ? "True" : "False");
 
-        libererGraphe(n);
+        freeGraph(n);
     }
 
     return 0;
