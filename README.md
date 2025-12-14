@@ -1,5 +1,7 @@
 # TD_Algorithms_DataStructure
 Practical exercises from UHA taught by Mr. Fawaz
+
+
 <img width="1400" height="938" alt="image" src="https://github.com/user-attachments/assets/a1c6f577-a796-40e3-af96-7a42280c4046" />
 
 ## 📚 TD Contents
