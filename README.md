@@ -51,6 +51,8 @@ Practical exercises from UHA taught by Mr. Fawaz
 - **Distance calculation** : Determine shortest paths between nodes
 - **Validation** : Compare results with expected files through tests
 
+<img src="TD-3/Aladdin/img/Aladdin's Magic Kingdom.jpeg" width="600" alt="Aladdin's Magic Kingdom" />
+
 #### InfiniteLibrary : AVL Tree (Self-Balancing Binary Search Tree)
 **Objective** : Implement a self-balancing data structure
 - **AVL binary search tree** : Structure guaranteeing balance with O(log n) for insertion/search/deletion
@@ -58,10 +60,14 @@ Practical exercises from UHA taught by Mr. Fawaz
 - **Complex operations** : Efficient insertion, deletion, and search
 - **Use cases** : Efficient data management with continuous fast access
 
+<img src="TD-3/InfiniteLibrary/img/The Infinite Library.jpeg" width="600" alt="The Infinite Library" />
+
 ---
 
 ### TD-6 : Palantir
-Exercise on advanced structures and algorithms (file currently empty)
+Exercise on advanced structures and algorithms
+
+<img src="TD-6/img/The Palantir Network.jpeg" width="600" alt="The Palantir Network" />
 
 ---
 
@@ -69,4 +75,6 @@ Exercise on advanced structures and algorithms (file currently empty)
 Advanced problem-solving exercises combining logic and algorithms :
 - **HR.c** : Human resources management algorithms (parsing, calculations, optimization)
 - **pokemon.c & pokemon_code.c** : Pokémon-related problems (simulation, game logic, data structures)
+
+<img src="TD-7/img/Catch'em All !.jpeg" width="600" alt="Catch'em All!" />
 
