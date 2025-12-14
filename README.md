@@ -71,9 +71,8 @@ Exercise on advanced structures and algorithms
 
 ---
 
-### TD-7 : HR Challenges and Pokémon
+### TD-7 : Pokemon Catch'em All ! 
 Advanced problem-solving exercises combining logic and algorithms :
-- **HR.c** : Human resources management algorithms (parsing, calculations, optimization)
 - **pokemon.c & pokemon_code.c** : Pokémon-related problems (simulation, game logic, data structures)
 
 <img src="TD-7/img/Catch'em All !.jpeg" width="600" alt="Catch'em All!" />
